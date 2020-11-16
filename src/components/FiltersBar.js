@@ -37,6 +37,9 @@ const FiltersBar = () => {
     outline: none;
   `;
 
+  const InputCheckbox = styled.input`
+    height: 20px;
+  `;
   const Select = styled.select`
     height: 100%;
     background: transparent;
@@ -65,7 +68,7 @@ const FiltersBar = () => {
       </CustomInput>
       <CustomInput>
         <Label for="available">Dispo ce soir</Label>
-        <Input
+        <InputCheckbox
           type="checkbox"
           name="available-checkbox"
           class="available-checkbox"
