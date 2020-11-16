@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 
-const FiltersBar = () => {
+const FiltersBar = (props) => {
   const FiltersBarStyle = styled.div`
     display: flex;
     margin: 0 auto;
@@ -15,12 +15,10 @@ const FiltersBar = () => {
     box-shadow: rgba(0, 0, 0, 0.15) 0px 16px 32px,
       rgba(0, 0, 0, 0.1) 0px 3px 8px;
   `;
-
   const CustomInput = styled.div`
     display: flex;
     flex-direction: column;
   `;
-
   const Label = styled.label`
     color: black;
     font-weight: 800;
@@ -29,14 +27,12 @@ const FiltersBar = () => {
     line-height: 16px;
     padding-bottom: 4px;
   `;
-
   const Input = styled.input`
     height: 100%;
     background: transparent;
     border: none;
     outline: none;
   `;
-
   const InputCheckbox = styled.input`
     height: 20px;
   `;
@@ -53,22 +49,40 @@ const FiltersBar = () => {
         <Label for="name">Lieux</Label>
         <Input
           class="search-input"
+          value={props.location}
           type="text"
           name="name"
           placeholder="Ou voyagez-vous ?"
+          onChange={(e) => props.handleInputChange(e)}
+          // allow to focus when rerender
+          autoFocus
         />
       </CustomInput>
       <CustomInput>
         <Label for="type">Type de logement</Label>
-        <Select class="select">
-          <option value="All">All</option>
-          <option value="Flat">Flat</option>
-          <option value="House">House</option>
+        <Select
+          class="select"
+          onChange={(e) => props.handleSelectTypeLogement(e)}
+        >
+          <option selected={props.type === "All" ? true : false} value="All">
+            All
+          </option>
+          <option selected={props.type === "Flat" ? true : false} value="Flat">
+            Flat
+          </option>
+          <option
+            selected={props.type === "House" ? true : false}
+            value="House"
+          >
+            House
+          </option>
         </Select>
       </CustomInput>
       <CustomInput>
         <Label for="available">Dispo ce soir</Label>
         <InputCheckbox
+          onClick={(e) => props.handleOnCheck(e)}
+          checked={props.checked}
           type="checkbox"
           name="available-checkbox"
           class="available-checkbox"

@@ -40,7 +40,6 @@ const Card = ({ name, desc, img }) => {
     <CardContainer>
       <CardImg />
       <CardBody>
-        {console.log(name)}
         <h1>{name}</h1>
         <h2>{desc}</h2>
         <CardButton />
